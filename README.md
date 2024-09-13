@@ -1,2 +1,2 @@
 # S4HANA-CDS-UI5-ODATA-GATEWAY
-my projects in S4 HANA, CDS views, Gateway, ODATA services
+my project in S4 HANA, CDS views, Gateway, ODATA service(final project after udemy course)
