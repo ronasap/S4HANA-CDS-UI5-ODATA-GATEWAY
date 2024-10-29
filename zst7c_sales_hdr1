@@ -1,0 +1,49 @@
+@AbapCatalog.sqlViewName: 'ZST7CSALESHDR1'
+@AbapCatalog.compiler.compareFilter: true
+@AbapCatalog.preserveKey: true
+@AccessControl.authorizationCheck: #CHECK
+@EndUserText.label: 'Header consumption view'
+@VDM.viewType: #CONSUMPTION
+@ObjectModel.createEnabled: true
+@ObjectModel.updateEnabled: true
+@ObjectModel.deleteEnabled: true
+@ObjectModel.compositionRoot: true
+@ObjectModel.transactionalProcessingDelegated: true
+define view zst7c_sales_hdr1 as select from zst7i_saleshdrtp
+association [1..*] to zst7c_sales_itm1 as _salesitm on $projection.sd_key = _salesitm.parentkey
+
+{
+@UI.hidden: true
+key sd_key,
+@UI.identification.position: 10
+@EndUserText.label: 'Document Date'
+@UI.lineItem.position:10
+doc_date,
+@UI.identification.position: 20
+@UI.lineItem.position:20
+@EndUserText.label: 'Desription'
+name,
+@UI.identification.position: 30
+@UI.lineItem.position:30
+@EndUserText.label: 'Document Category'
+catg,
+@UI.identification.position: 40
+@EndUserText.label: 'Order Type'
+@UI.lineItem.position:40
+order_type,
+@UI.identification.position: 50
+@EndUserText.label: 'Order Reason'
+@UI.lineItem.position:50
+order_reason,
+@UI.identification.position: 60
+@EndUserText.label: 'Total Amount'
+@UI.lineItem.position:60
+net_value,
+@UI.identification.position: 70
+@EndUserText.label: 'Currency'
+@Semantics.currencyCode:true
+currency,
+@ObjectModel.association.type: [#TO_COMPOSITION_CHILD]
+_salesitm
+
+}
