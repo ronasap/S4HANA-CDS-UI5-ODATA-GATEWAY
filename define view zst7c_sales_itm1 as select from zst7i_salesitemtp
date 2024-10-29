@@ -1,0 +1,43 @@
+
+@AbapCatalog.sqlViewName: 'ZST7CSALESITM1'
+@AbapCatalog.compiler.compareFilter: true
+@AbapCatalog.preserveKey: true
+@AccessControl.authorizationCheck: #CHECK
+@EndUserText.label: 'consumption view for sales item'
+@VDM.viewType: #CONSUMPTION
+@ObjectModel.createEnabled: true
+@ObjectModel.updateEnabled: true
+@ObjectModel.deleteEnabled: true
+@ObjectModel.transactionalProcessingDelegated: true
+define view zst7c_sales_itm1 as select from zst7i_salesitemtp
+association [1..1] to zst7c_sales_hdr1 as _saleshdr on $projection.parentkey = _saleshdr.sd_key
+{
+
+@UI.hidden: true
+key itm_key,
+@UI.hidden: true
+parentkey,
+@UI.identification.position: 10
+@EndUserText.label: 'Material Number'
+@UI.lineItem.position:10
+mat_num,
+@UI.identification.position: 20
+@EndUserText.label: 'Material Group'
+@UI.lineItem.position:20
+mat_grp,
+@UI.identification.position: 30
+@EndUserText.label: 'Item Type'
+@UI.lineItem.position:30
+itm_type,
+@UI.identification.position: 40
+@EndUserText.label: 'Amount'
+@UI.lineItem.position:40
+@Semantics.amount.currencyCode: 'currency'
+item_value,
+@UI.identification.position: 50
+@EndUserText.label: 'Currency'
+@UI.lineItem.position:50
+currency,
+@ObjectModel.association.type: [#TO_COMPOSITION_ROOT,#TO_COMPOSITION_PARENT]
+_saleshdr
+}
